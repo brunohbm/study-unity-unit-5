@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
         
     }
 
-    void UpdateScoreText(int scoreAmount)
+    public void UpdateScore(int scoreAmount)
     {
         score += scoreAmount;
         scoreText.text = "Score: " + score;
