@@ -28,19 +28,32 @@ public class Target : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(!gameManager.isGameActive)
+        {
+            DestoryTarget();
+        }
     }
 
     private void OnMouseDown()
     {
-        Destroy(gameObject);
+        DestoryTarget();
         gameManager.UpdateScore(pointValue);
-        Instantiate(explosionParticle, transform.position, transform.rotation);        
+    }
+
+    private void DestoryTarget()
+    {
+        Destroy(gameObject);
+        Instantiate(explosionParticle, transform.position, transform.rotation);
     }
 
     private void OnTriggerEnter(Collider other)
     {
         Destroy(gameObject);
+
+        if(!gameObject.CompareTag("Bad"))
+        {
+            gameManager.GameOver();
+        }
     }
 
     Vector3 RandomSpawnPos()
