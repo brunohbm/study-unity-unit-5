@@ -11,12 +11,14 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI gameOverText;
     public TextMeshProUGUI livesText;
+    public GameObject pauseCanvas;
     public Slider volumeSlider;
     public Button restartButton;
     public GameObject titleScreen;
     public AudioSource backgroundMusic;
 
     public bool isGameActive = false;
+    public bool isGamePaused = false;
     public int livesAmount = 3;
 
     private int score = 0;
@@ -31,7 +33,12 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(isGameActive && Input.GetKeyDown(KeyCode.Space))
+        {
+            isGamePaused = !isGamePaused;
+            Time.timeScale = isGamePaused ? 0 : 1;
+            pauseCanvas.SetActive(isGamePaused);
+        }
     }
 
     public void UpdateScore(int scoreAmount)

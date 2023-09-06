@@ -36,6 +36,8 @@ public class Target : MonoBehaviour
 
     private void OnMouseDown()
     {
+        if (gameManager.isGamePaused) return;
+
         DestoryTarget();
         gameManager.UpdateScore(pointValue);
     }
