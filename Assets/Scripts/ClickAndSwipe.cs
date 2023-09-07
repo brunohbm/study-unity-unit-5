@@ -2,8 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// TODO - Stopped on step 8.
-
 [RequireComponent(typeof(TrailRenderer), typeof(BoxCollider))]
 public class ClickAndSwipe : MonoBehaviour
 {
@@ -26,11 +24,17 @@ public class ClickAndSwipe : MonoBehaviour
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         HandleMouseBehaviour();
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        Target collisionTarget = collision.gameObject.GetComponent<Target>();
+        if (collisionTarget) collisionTarget.KillTarget();
+    }
+
 
     void HandleMouseBehaviour()
     {
@@ -62,12 +66,7 @@ public class ClickAndSwipe : MonoBehaviour
             Input.mousePosition.y,
             10.0f
         );
-        Debug.Log(actualMousePosition);
-
         mousePos = cam.ScreenToWorldPoint(actualMousePosition);
-
-        Debug.Log(mousePos);
-
         transform.position = mousePos;
     }
 }

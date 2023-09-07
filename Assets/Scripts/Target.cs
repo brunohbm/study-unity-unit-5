@@ -34,7 +34,7 @@ public class Target : MonoBehaviour
         }
     }
 
-    private void OnMouseDown()
+    public void KillTarget()
     {
         if (gameManager.isGamePaused) return;
 
