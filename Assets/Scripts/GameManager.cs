@@ -12,7 +12,6 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI gameOverText;
     public TextMeshProUGUI livesText;
     public GameObject pauseCanvas;
-    public Slider volumeSlider;
     public Button restartButton;
     public GameObject titleScreen;
     public AudioSource backgroundMusic;
@@ -27,7 +26,6 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        volumeSlider.onValueChanged.AddListener(ChangeVolume);
     }
 
     // Update is called once per frame
